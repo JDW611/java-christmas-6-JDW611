@@ -17,6 +17,9 @@ public class EventPlannerController {
         outputView.printOrderMenuDetail(orderDetails);
         int orderTotalPrice = eventPlannerService.calculateOrderTotalPrice(orderDetails);
         outputView.printOrderTotalPrice(orderTotalPrice);
+
+        String promotionResult = eventPlannerService.givePromotion(orderTotalPrice);
+        outputView.printPromotionMenu(promotionResult);
     }
 
 }

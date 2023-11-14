@@ -1,16 +1,16 @@
 package christmas.service;
 
-import static christmas.domain.Promotion.isChampagneEligible;
+import static christmas.models.Promotion.isChampagneEligible;
 
-import christmas.domain.Menu;
-import christmas.domain.Order;
-import christmas.domain.Promotion;
+import christmas.enums.Badge;
+import christmas.enums.Menu;
+import christmas.models.Order;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class EventPlannerService {
-    public Order convertToMenuItems(String customerOrder) {
+public class EventService {
+    public Order convertToMenuItems(String customerOrder, int visitDate) {
         Map<String, Integer> orderDetails = convertToOrderDetails(customerOrder);
         Order order = new Order();
 
@@ -18,6 +18,7 @@ public class EventPlannerService {
             Menu menu = Menu.checkMenu(menuName);
             order.addItem(menu, quantity);
         });
+        order.setVisitDate(visitDate);
 
         return order;
     }
@@ -26,7 +27,7 @@ public class EventPlannerService {
         return orderDetails.calculateTotalPrice(orderDetails);
     }
 
-    public String givePromotion(int orderTotalPrice) {
+    public String giveGift(int orderTotalPrice) {
         return isChampagneEligible(orderTotalPrice);
     }
 
@@ -37,5 +38,20 @@ public class EventPlannerService {
                         parts -> parts[0].trim(),
                         parts -> Integer.parseInt(parts[1].trim())
                 ));
+    }
+
+    public String checkBadgesType(int totalDiscountPrice) {
+        if (totalDiscountPrice >= 20000) {
+            return Badge.SANTA.getBadgeName();
+        }
+
+        if (totalDiscountPrice >= 10000) {
+            return Badge.TREE.getBadgeName();
+        }
+
+        if (totalDiscountPrice >= 5000) {
+            return Badge.STAR.getBadgeName();
+        }
+        return Badge.NONE.getBadgeName();
     }
 }

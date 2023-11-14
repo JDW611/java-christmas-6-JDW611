@@ -1,6 +1,8 @@
 package christmas.view;
 
-import christmas.domain.Order;
+import christmas.models.DiscountInfo;
+import christmas.models.Order;
+import java.util.List;
 
 public class OutputView {
     public void printWelcomeMessage() {
@@ -26,5 +28,29 @@ public class OutputView {
     public void printPromotionMenu(String promotionResult) {
         System.out.println("\n<증정 메뉴>");
         System.out.println(promotionResult);
+    }
+
+    public void printDiscountList(List<DiscountInfo> discountInfos) {
+        System.out.println("\n<혜택 내역>");
+        discountInfos.stream()
+                .filter(discountInfo -> discountInfo.getDiscountPrice() > 0)
+                .forEach(discountInfo -> {
+                    System.out.printf("%s: -%,d원\n", discountInfo.getName(), discountInfo.getDiscountPrice());
+                });
+    }
+
+    public void printTotalDiscountPrice(int totalDiscountPrice) {
+        System.out.println("\n<총혜택 금액>");
+        System.out.printf("-%,d원\n", totalDiscountPrice);
+    }
+
+    public void printExpectedPayPrice(int expectedPayPrice) {
+        System.out.println("\n<할인 후 예상 결제 금액>");
+        System.out.printf("%,d원\n", expectedPayPrice);
+    }
+
+    public void printEventBadge(String Badge) {
+        System.out.println("\n<12월 이벤트 배지>");
+        System.out.println(Badge);
     }
 }

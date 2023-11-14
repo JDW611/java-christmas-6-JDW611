@@ -1,7 +1,11 @@
 package christmas;
 
+import christmas.controller.EventController;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        final EventController game = new EventController();
+
+        game.run();
     }
 }

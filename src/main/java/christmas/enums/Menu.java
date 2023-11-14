@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.enums;
 public enum Menu {
     MUSHROOM_SOUP("양송이수프", "Appetizer", 6000),
     TAPAS("타파스", "Appetizer", 5500),
@@ -30,6 +30,10 @@ public enum Menu {
 
     public int getPrice() {
         return price;
+    }
+
+    public String getCategory() {
+        return category;
     }
 
 

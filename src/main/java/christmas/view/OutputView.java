@@ -1,11 +1,27 @@
 package christmas.view;
 
+import christmas.domain.Order;
+
 public class OutputView {
     public void printWelcomeMessage() {
         System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
     }
 
     public void printEventPreviewForDate(int date) {
-        System.out.printf("12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!", date);
+        System.out.printf("12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n\n", date);
+    }
+
+    public void printOrderMenuDetail(Order orderMenu) {
+        System.out.println("<주문 메뉴>");
+
+        orderMenu.getItems().forEach((menu, quantity) -> {
+            String menuName = menu.getName();
+            System.out.println(menuName + ": " + quantity + "개");
+        });
+    }
+
+    public void printOrderTotalPrice(int orderTotalPrice) {
+        System.out.println("\n<할인 전 총주문 금액>");
+        System.out.printf("%,d원",orderTotalPrice);
     }
 }

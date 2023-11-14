@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.models;
 
 public class Promotion {
     private static final int CHAMPAGNE_GIFT_LIMIT = 120000;

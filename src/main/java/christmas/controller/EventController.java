@@ -18,17 +18,19 @@ public class EventController {
         int visitDate = inputView.readDate();
         Order orderDetails = eventService.convertToMenuItems(inputView.readMenu(), visitDate);
         outputView.printEventPreviewForDate(visitDate);
+
         outputView.printOrderMenuDetail(orderDetails);
+
         int orderTotalPrice = eventService.calculateOrderTotalPrice(orderDetails);
         outputView.printOrderTotalPrice(orderTotalPrice);
 
         String promotionResult = eventService.giveGift(orderTotalPrice);
         outputView.printPromotionMenu(promotionResult);
 
-        List<DiscountInfo> discountInfos = eventDiscountService.caculateDiscount(orderDetails);
+        List<DiscountInfo> discountInfos = eventDiscountService.caculateDiscount(orderDetails, orderTotalPrice);
         outputView.printDiscountList(discountInfos);
 
-        int totalDiscountPrice = eventDiscountService.caculateTotalDiscount(orderDetails);
+        int totalDiscountPrice = eventDiscountService.caculateTotalDiscount(orderDetails, orderTotalPrice);
         outputView.printTotalDiscountPrice(totalDiscountPrice);
 
 

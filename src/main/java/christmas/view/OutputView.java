@@ -32,15 +32,25 @@ public class OutputView {
 
     public void printDiscountList(List<DiscountInfo> discountInfos) {
         System.out.println("\n<혜택 내역>");
-        discountInfos.stream()
-                .filter(discountInfo -> discountInfo.getDiscountPrice() > 0)
-                .forEach(discountInfo -> {
-                    System.out.printf("%s: -%,d원\n", discountInfo.getName(), discountInfo.getDiscountPrice());
-                });
+
+        if (discountInfos.isEmpty()) {
+            System.out.println("없음");
+            return;
+        }
+
+        discountInfos.forEach(discountInfo -> {
+            System.out.printf("%s: -%,d원\n", discountInfo.getName(), discountInfo.getDiscountPrice());
+        });
     }
 
     public void printTotalDiscountPrice(int totalDiscountPrice) {
         System.out.println("\n<총혜택 금액>");
+
+        if (totalDiscountPrice == 0) {
+            System.out.println("없음");
+            return;
+        }
+
         System.out.printf("-%,d원\n", totalDiscountPrice);
     }
 

@@ -4,5 +4,5 @@ import christmas.models.DiscountInfo;
 import christmas.models.Order;
 
 public interface DiscountStrategy {
-    DiscountInfo calculateDiscount(Order order);
+    DiscountInfo calculateDiscount(Order order, int orderTotalPrice);
 }

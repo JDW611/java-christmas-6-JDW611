@@ -12,9 +12,9 @@ public class ChristmasDayDiscountStrategy implements DiscountStrategy{
     private static final int DAILY_INCREMENT = 100;
 
     @Override
-    public DiscountInfo calculateDiscount(Order order) {
+    public DiscountInfo calculateDiscount(Order order, int orderTotalPrice) {
         LocalDate customerVisitDate = order.getVisitDate();
-        if (customerVisitDate.isBefore(START_DATE) || customerVisitDate.isAfter(END_DATE)) {
+        if (customerVisitDate.isBefore(START_DATE) || customerVisitDate.isAfter(END_DATE) || orderTotalPrice < 10000) {
             return new DiscountInfo("크리스마스 디데이 할인", 0);
         }
         long daysBetween = ChronoUnit.DAYS.between(START_DATE, customerVisitDate);

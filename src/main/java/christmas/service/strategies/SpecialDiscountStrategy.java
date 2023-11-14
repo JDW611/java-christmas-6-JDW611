@@ -12,8 +12,8 @@ public class SpecialDiscountStrategy implements DiscountStrategy{
 
 
     @Override
-    public DiscountInfo calculateDiscount(Order order) {
-        if (SPECIAL_DAYS.contains(order.getVisitDate().getDayOfMonth())) {
+    public DiscountInfo calculateDiscount(Order order, int orderTotalPrice) {
+        if (SPECIAL_DAYS.contains(order.getVisitDate().getDayOfMonth()) && orderTotalPrice >= 10000) {
             return new DiscountInfo("특별 할인" ,SPECIAL_DISCOUNT);
         }
         return new DiscountInfo("특별 할인" ,0);

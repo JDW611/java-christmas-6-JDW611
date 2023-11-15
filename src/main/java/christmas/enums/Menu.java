@@ -1,4 +1,5 @@
 package christmas.enums;
+
 public enum Menu {
     MUSHROOM_SOUP("양송이수프", "Appetizer", 6000),
     TAPAS("타파스", "Appetizer", 5500),
@@ -37,7 +38,7 @@ public enum Menu {
     }
 
 
-    public static Menu checkMenu(String name) {
+    public static Menu checkExistenceMenu(String name) {
         for (Menu menu : Menu.values()) {
             if (menu.getName().equals(name)) {
                 return menu;

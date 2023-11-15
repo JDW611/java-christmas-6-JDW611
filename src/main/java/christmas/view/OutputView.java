@@ -21,10 +21,12 @@ public class OutputView {
             System.out.println(menuName + ": " + quantity + "개");
         });
     }
+
     public void printOrderTotalPrice(int orderTotalPrice) {
         System.out.println("\n<할인 전 총주문 금액>");
-        System.out.printf("%,d원\n",orderTotalPrice);
+        System.out.printf("%,d원\n", orderTotalPrice);
     }
+
     public void printPromotionMenu(String promotionResult) {
         System.out.println("\n<증정 메뉴>");
         System.out.println(promotionResult);

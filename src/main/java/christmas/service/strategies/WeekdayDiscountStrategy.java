@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class WeekdayDiscountStrategy implements DiscountStrategy {
     private static final int DISCOUNT_PER_DESSERT = 2023;
+
     @Override
     public DiscountInfo calculateDiscount(Order order, int orderTotalPrice) {
         Map<Menu, Integer> menus = order.getItems();

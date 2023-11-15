@@ -6,8 +6,9 @@ import christmas.models.Order;
 import java.time.DayOfWeek;
 import java.util.Map;
 
-public class WeekendDiscountStrategy implements DiscountStrategy{
+public class WeekendDiscountStrategy implements DiscountStrategy {
     private static final int DISCOUNT_PER_MAIN = 2023;
+
     @Override
     public DiscountInfo calculateDiscount(Order order, int orderTotalPrice) {
         Map<Menu, Integer> menus = order.getItems();

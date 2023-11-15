@@ -14,6 +14,12 @@ public class Order {
     }
 
     public void addItem(Menu item, int quantity) {
+        if (quantity < 1) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+        if (items.containsKey(item)) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
         items.put(item, quantity);
     }
 
@@ -35,5 +41,30 @@ public class Order {
                 .stream()
                 .mapToInt(menu -> menu.getKey().getPrice() * menu.getValue())
                 .sum();
+    }
+
+    public void validateOrder() {
+        checkOrderJustDrink();
+        checkOrderMaxQuantity();
+    }
+
+    private void checkOrderJustDrink() {
+        if (items.keySet()
+                .stream()
+                .allMatch(menu -> menu.getCategory().equals("Drink")))
+        {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+    }
+
+    private void checkOrderMaxQuantity() {
+        int totalQuantity = items.values()
+                .stream()
+                .mapToInt(Integer::intValue)
+                .sum();
+
+        if (totalQuantity > 20) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
     }
 }

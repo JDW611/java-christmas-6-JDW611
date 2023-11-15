@@ -15,10 +15,11 @@ public class EventService {
         Order order = new Order();
 
         orderDetails.forEach((menuName, quantity) -> {
-            Menu menu = Menu.checkMenu(menuName);
+            Menu menu = Menu.checkExistenceMenu(menuName);
             order.addItem(menu, quantity);
         });
         order.setVisitDate(visitDate);
+        order.validateOrder();
 
         return order;
     }
